@@ -3,17 +3,9 @@ pipeline {
     stages {
         stage('Pull from GitHub') {
             steps {
-                script {
-                    checkout([$class: 'GitSCM',
-                            branches: [[name: '*/main']],
-                            doGenerateSubmoduleConfigurations: false,
-                            extensions: [[$class: 'CleanCheckout']],
-                            submoduleCfg: [],
-                            userRemoteConfigs: [[url: 'https://github.com/MeriemBenIsmail/MP-CI/CD',
-                                                credentialsId: 'gitCredentials']]])
-                }
+                git url: 'https://github.com/MeriemBenIsmail/MP-CI-CD', branch: 'main'
+                
             }
-            
         }
         stage('Build Image') {
             steps {
