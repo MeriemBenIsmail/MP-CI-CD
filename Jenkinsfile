@@ -2,15 +2,18 @@ pipeline {
     agent any
     stages {
         stage('Pull from GitHub') {
-            script {
-            checkout([$class: 'GitSCM',
-                      branches: [[name: '*/main']],
-                      doGenerateSubmoduleConfigurations: false,
-                      extensions: [[$class: 'CleanCheckout']],
-                      submoduleCfg: [],
-                      userRemoteConfigs: [[url: 'https://github.com/MeriemBenIsmail/MP-CI/CD',
-                                          credentialsId: 'gitCredentials']]])
+            steps {
+                script {
+                    checkout([$class: 'GitSCM',
+                            branches: [[name: '*/main']],
+                            doGenerateSubmoduleConfigurations: false,
+                            extensions: [[$class: 'CleanCheckout']],
+                            submoduleCfg: [],
+                            userRemoteConfigs: [[url: 'https://github.com/MeriemBenIsmail/MP-CI/CD',
+                                                credentialsId: 'gitCredentials']]])
+                }
             }
+            
         }
         stage('Build Image') {
             steps {
