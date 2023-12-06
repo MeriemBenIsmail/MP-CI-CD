@@ -19,7 +19,7 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-app.use("/user", UserRoutes);
+app.use("/users", UserRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

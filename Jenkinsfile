@@ -11,17 +11,17 @@ pipeline {
             steps {
                 script {
                     echo "building the image"
-                    sh "docker build -t MP-CI/CD-app ."
+                    sh "docker-compose build"
+                    
                 }
             }
         }
-        
-        
-
-
+        stage('Push to Docker Hub') {
+            steps {
+                echo "push to docker hub"
+                sh "docker login -u meriem1219 -p spn123456789"
+                sh "docker-compose push"
+            }
+        }
     }
-      
-      
-        
-    
 }
