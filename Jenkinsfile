@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     environment {
+        DOCKER_PATH = tool 'DOCKER'
+    }
     stages {
         stage('Pull from GitHub') {
             steps {
