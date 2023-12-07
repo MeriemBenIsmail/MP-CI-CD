@@ -6,22 +6,61 @@ pipeline {
     }
 
     stages {
-        stage('Build Image') {
+        stage('Pull from GitHub') {
+            steps {
+                git url: 'https://github.com/MeriemBenIsmail/MP-CI-CD', branch: 'main'
+                
+            }
+        }
+        stage('Build MongoDB Image') {
             steps {
                 script {
-                    echo "Building the Docker images"
-                    sh "docker-compose build"
+                    echo "Building the MongoDB image"
+                    sh "docker build -t mongo:latest -f Dockerfile.mongodb ."
                 }
             }
         }
+
+        stage('Run MongoDB Container') {
+            steps {
+                script {
+                    echo "Running the MongoDB container"
+                    sh "docker run -d --name mongodb -p 27017:27017 mongo:latest"
+                }
+            }
+        }
+
+        stage('Build Express App Image') {
+            steps {
+                script {
+                    echo "Building the Express App image"
+                    sh "docker build -t express-app:latest -f Dockerfile ."
+                }
+            }
+        }
+
+        stage('Run Express App Container') {
+            steps {
+                script {
+                    echo "Running the Express App container"
+                    sh "docker run -d --name express-app -p 3000:3000 --link mongodb:db -e MONGO_URI=mongodb://db:27017/MP-database express-app:latest"
+                }
+            }
+        }
+    
 
         stage('Push to Docker Hub') {
             steps {
                 script {
                     echo "Pushing images to Docker Hub"
-                    sh "${DOCKER_COMPOSE_PATH} push"
+
+                    sh "docker login -u meriem1219 -p spn123456789"
+
+                    sh "docker tag mp-app-ci-cd meriem1219/MP-CI-CD"
+                    sh "docker push meriem1219/MP-CI-CD"
                 }
             }
         }
+        
     }
 }
