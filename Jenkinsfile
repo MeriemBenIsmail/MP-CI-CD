@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        DOCKER_PATH = "C:/Program Files/Docker/Docker/resources/bin"
+        DOCKER_PATH = "C:/Program Files/Docker/Docker/resources/bin/docker-compose"
     }
     stages {
         stage('Pull from GitHub') {
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     echo "building the image"
-                    sh "docker-compose build"
+                    sh "${DOCKER_PATH} build"
                     
                 }
             }
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo "push to docker hub"
                 sh "docker login -u meriem1219 -p spn123456789"
-                sh "docker-compose push"
+                sh "${DOCKER_PATH}  push"
             }
         }
     }
