@@ -56,8 +56,8 @@ pipeline {
 
                     sh "docker login -u meriem1219 -p spn123456789"
 
-                    sh "docker tag mp-app-ci-cd meriem1219/MP-CI-CD"
-                    sh "docker push meriem1219/MP-CI-CD"
+                    sh "docker tag latest meriem1219/mp-ci-cd"
+                    sh "docker push meriem1219/mp-ci-cd"
                 }
             }
         }
