@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE_PATH = '"C:/Program Files/Docker/Docker/resources/bin/docker-compose.exe"'
+        DOCKER_COMPOSE_PATH = '"C:/Program Files/Docker/Docker/resources/bin/"'
     }
 
     stages {
@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the Docker images"
-                    sh "${DOCKER_COMPOSE_PATH} build"
+                    sh "docker-compose build"
                 }
             }
         }
