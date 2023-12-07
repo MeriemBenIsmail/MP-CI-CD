@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the MongoDB image"
-                    sh "docker build -t mongo:latest -f Dockerfile.mongodb ."
+                    sh "docker build -t mongo:latest ."
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the Express App image"
-                    sh "docker build -t express-app:latest -f Dockerfile ."
+                    sh "docker build -t express-app:latest ."
                 }
             }
         }
