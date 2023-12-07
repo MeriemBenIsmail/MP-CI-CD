@@ -62,5 +62,19 @@ pipeline {
             }
         }
         
+        stage('Deploy with Terraform & Kubernetes') {
+            steps {
+                script {
+                    echo "Deploying with Terraform"
+                    dir('terraform') {
+                        sh "terraform destroy -auto-approve"
+                        sh "terraform init"
+                        sh "terraform apply -auto-approve"
+                    }
+                    
+                }
+            }
+        }
+    
     }
 }
