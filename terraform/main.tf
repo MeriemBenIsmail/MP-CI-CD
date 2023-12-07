@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "mongodb_deployment" {
         container {
           name  = "mongodb"
           image = "mongo:latest"
-          ports {
+          port {
             container_port = 27017
           }
         }
@@ -80,7 +80,7 @@ resource "kubernetes_deployment" "app_deployment" {
         container {
           name  = "express-app"
           image = "meriem1219/mp-ci-cd:latest"  # Update with your image details
-          ports {
+          port {
             container_port = 3000
           }
 
