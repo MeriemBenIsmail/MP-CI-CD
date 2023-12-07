@@ -1,14 +1,14 @@
 pipeline {
     agent any
-  /*  environment {
-        DOCKER_PATH = '"C:/Program Files/Docker/Docker/resources/bin/docker-compose"'
-    }*/
+     tools {
+        docker 'Docker'
+    }
     stages {
         stage('Build Image') {
             steps {
                 script {
                     echo "Building the Docker images"
-                    sh "docker build ."
+                    sh "docker-compose build"
                 }
             }
         }
