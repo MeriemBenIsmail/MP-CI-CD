@@ -21,14 +21,14 @@ pipeline {
             }
         }
 
-        stage('Run MongoDB Container') {
+      /*  stage('Run MongoDB Container') {
             steps {
                 script {
                     echo "Running the MongoDB container"
                     sh "docker run -d --name mongodb -p 27017:27017 mongo:latest"
                 }
             }
-        }
+        }*/
 
         stage('Build Express App Image') {
             steps {
@@ -39,14 +39,14 @@ pipeline {
             }
         }
 
-        stage('Run Express App Container') {
+       /* stage('Run Express App Container') {
             steps {
                 script {
                     echo "Running the Express App container"
                     sh "docker run -d --name express-app -p 3000:3000 --link mongodb:db -e MONGO_URI=mongodb://db:27017/MP-database express-app:latest"
                 }
             }
-        }
+        }*/
     
 
         stage('Push to Docker Hub') {
