@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the Docker images"
-                    sh "${DOCKER_COMPOSE_PATH} build"
+                    sh "${DOCKER_COMPOSE_PATH}-compose build"
                 }
             }
         }
