@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-        DOCKER_PATH = tool 'DOCKER'
+        DOCKER_PATH = "C:\Program Files\Docker\Docker\resources\bin"
     }
     stages {
         stage('Pull from GitHub') {
